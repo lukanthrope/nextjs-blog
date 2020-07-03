@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Post } from '../../redux/reducers/reducer';
+import { Post } from '../../redux/reducers/reducer.types';
 import { H1, BodyConainer } from '../../styles';
 
 const PostPreview = ({ title, body, id }: Post): JSX.Element => (
