@@ -4,15 +4,7 @@ export const RootDiv = styled.div`
   font-family: Arial, Helvetica, sans-serif;
 `;
 
-export const HoverText = styled.text`
-  cursor: pointer;
-
-  :hover {
-    text-decoration-line: underline;
-  }
-`;
-
-export const A = styled(HoverText)`
+export const A = styled.a`
   text-decoration: none;
   font-size: 1.2rem;
   color: rgb(255, 20, 147);
@@ -32,9 +24,13 @@ export const Container = styled.header`
   padding-bottom: 150px;
 `;
 
-export const H1 = styled(HoverText)`
-  max-width: 100px;
-  font-size: 2.2rem;
+export const H1 = styled.h1`
+  font-weight: 400;
+  cursor: pointer;
+
+  :hover {
+    text-decoration-line: underline;
+  }
 `;
 
 export const BodyConainer = styled.p`

@@ -8,7 +8,7 @@ import { getPost } from '../../redux/actions';
 
 import Header from '../../components/Header';
 import Spinner from '../../components/Spinner';
-import { Container, BodyConainer } from '../../styles';
+import { Container, BodyConainer, H1 } from '../../styles';
 
 const PostPage: NextPage = () => {
   const router = useRouter();
@@ -25,12 +25,12 @@ const PostPage: NextPage = () => {
   const PostRender = (): JSX.Element =>
     post && (
       <>
-        <h2>{post.title}</h2>
+        <H1>{post.title}</H1>
         <BodyConainer>{post.body}</BodyConainer>
       </>
     );
 
-  const noPostFound = (): JSX.Element => !post && !isLoading && <h2>No post found</h2>;
+  const noPostFound = (): JSX.Element => !post && !isLoading && <H1>No post found</H1>;
 
   return (
     <>

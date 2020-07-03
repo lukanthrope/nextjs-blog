@@ -65,7 +65,7 @@ const New: NextPage = () => {
       <Header />
       <Container>
         <Form onSubmit={handleSubmit}>
-          <label htmlFor="title" className={titleError && 'red'}>
+          <label htmlFor="title" className={titleError ? 'red' : ''}>
             title
           </label>
           <input
@@ -75,7 +75,7 @@ const New: NextPage = () => {
               handleInputChange({ type: TITLE, payload: e.target.value })
             }
           />
-          <label htmlFor="body" className={bodyError && 'red'}>
+          <label htmlFor="body" className={bodyError ? 'red' : ''}>
             body
           </label>
           <textarea
