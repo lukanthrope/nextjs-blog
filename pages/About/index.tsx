@@ -1,17 +1,19 @@
 import Head from 'next/head'
 import Link from 'next/link';
-import Footer from '../components/Footer';
+import Footer from '../../components/Footer';
 
-export default function About() {
+export default function About(): JSX.Element {
   return (
-    <div className="container">
+    <div className="">
       <Head>
         <title>About</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <h1>about</h1>
-      <Link href="/"><a>home</a></Link>
+      <Link href="/">
+        <a>home</a>
+      </Link>
       <Footer />
     </div>
-  )
+  );
 }

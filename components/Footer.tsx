@@ -1,5 +1,6 @@
-export default function About() {
-  
+import { FC } from "react";
+
+export default function About(): JSX.Element {
   return (
     <footer>
       <a
@@ -7,9 +8,8 @@ export default function About() {
         target="_blank"
         rel="noopener noreferrer"
       >
-        Powered by{' '}
         <img src="/vercel.svg" alt="Vercel Logo" className="logo" />
       </a>
     </footer>
-  )
+  );
 }
