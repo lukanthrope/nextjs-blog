@@ -1,12 +1,14 @@
 import { useEffect } from 'react';
 import { NextPage } from 'next';
+import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { useSelector, useDispatch } from 'react-redux';
 import { State } from '../../redux/reducers/reducer';
 import { getPost } from '../../redux/actions';
 
 import Header from '../../components/Header';
-import Footer from '../../components/Footer';
+import Spinner from '../../components/Spinner';
+import { Container, BodyConainer } from '../../styles';
 
 const PostPage: NextPage = () => {
   const router = useRouter();
@@ -20,15 +22,29 @@ const PostPage: NextPage = () => {
     dispatch(getPost(id as string));
   }, []);
 
-  return (
-    <div>
-      <Header />
-      {isLoading && <h1>loading..</h1>}
-      {post && <h2>{post.title}</h2>}
-      {!post && <h2>No post found</h2>}
+  const PostRender = (): JSX.Element =>
+    post && (
+      <>
+        <h2>{post.title}</h2>
+        <BodyConainer>{post.body}</BodyConainer>
+      </>
+    );
 
-      <Footer />
-    </div>
+  const noPostFound = (): JSX.Element => !post && !isLoading && <h2>No post found</h2>;
+
+  return (
+    <>
+      <Head>
+        <title>post #{id}</title>
+      </Head>
+
+      <Header />
+      <Container>
+        {isLoading && <Spinner />}
+        {PostRender()}
+        {noPostFound()}
+      </Container>
+    </>
   );
 };
 

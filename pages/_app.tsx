@@ -1,5 +1,6 @@
 import App, { AppInitialProps, AppContext } from 'next/app';
 import { wrapper } from '../redux/store';
+import { RootDiv } from '../styles';
 
 class WrappedApp extends App<AppInitialProps> {
   public static getInitialProps = async ({ Component, ctx }: AppContext) => {
@@ -13,7 +14,11 @@ class WrappedApp extends App<AppInitialProps> {
 
   public render() {
     const { Component, pageProps } = this.props;
-    return <Component {...pageProps} />;
+    return (
+      <RootDiv>
+        <Component {...pageProps} />
+      </RootDiv>
+    );
   }
 }
 

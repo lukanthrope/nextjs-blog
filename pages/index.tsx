@@ -5,9 +5,10 @@ import { useSelector, useDispatch } from 'react-redux';
 import { State, Post } from '../redux/reducers/reducer';
 import { getPosts } from '../redux/actions';
 
-import Footer from '../components/Footer';
 import Header from '../components/Header';
 import PostPreview from '../components/PostPreview';
+import Spinner from '../components/Spinner';
+import { Container } from '../styles';
 
 const Home: NextPage = () => {
   const posts = useSelector((state: State) => state.posts);
@@ -18,21 +19,25 @@ const Home: NextPage = () => {
     dispatch(getPosts());
   }, []);
 
+  const RenderPosts = (): JSX.Element[] =>
+    posts &&
+    posts.map(({ id, title, body }: Post) => <PostPreview id={id} title={title} body={body} key={id} />).reverse();
+  const noPosts = (): JSX.Element => posts.length === 0 && !isLoading && <h2>No post found</h2>;
+
   return (
-    <div className="container">
+    <>
       <Head>
-        <title>Create Next App</title>
+        <title>Home</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <Header />
-
-      {isLoading && <h1>loading..</h1>}
-      {posts &&
-        posts.map(({ id, title, body }: Post) => <PostPreview id={id} title={title} body={body} key={id} />).reverse()}
-      {!isLoading && posts.length === 0 && <h1>No posts yet</h1>}
-      <Footer />
-    </div>
+      <Container>
+        {isLoading && <Spinner />}
+        {RenderPosts()}
+        {noPosts()}
+      </Container>
+    </>
   );
 };
 

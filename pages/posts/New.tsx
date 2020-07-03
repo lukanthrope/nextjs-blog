@@ -1,20 +1,25 @@
 import { useState } from 'react';
 import { NextPage } from 'next';
+import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { useDispatch } from 'react-redux';
 import { createPost } from '../../redux/actions';
 
 import Header from '../../components/Header';
-import Footer from '../../components/Footer';
+import { Container, Form, Button } from '../../styles';
 
 type InputChange = {
   payload: string;
   type: string;
-}
+};
 
 const New: NextPage = () => {
   const [title, setTitle] = useState('');
   const [body, setBody] = useState('');
+
+  const [titleError, setTitleError] = useState(false);
+  const [bodyError, setBodyError] = useState(false);
+
   const dispatch = useDispatch();
   const router = useRouter();
 
@@ -34,30 +39,54 @@ const New: NextPage = () => {
       dispatch(createPost(title, body));
       router.push('/');
     }
+
+    if (title.trim() === '') {
+      setTitleError(true);
+    } else {
+      setTitleError(false);
+    }
+
+    if (body.trim() === '') {
+      setBodyError(true);
+    } else {
+      setBodyError(false);
+    }
   };
 
   return (
-    <div>
-      <Header />
-      <form onSubmit={handleSubmit}>
-        <input
-          value={title}
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-            handleInputChange({ type: 'TITLE', payload: e.target.value })
-          }
-        />
-        <input
-          value={body}
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-            handleInputChange({ type: 'BODY', payload: e.target.value })
-          }
-        />
-        <button type="submit">Post</button>
-      </form>
+    <>
+      <Head>
+        <title>Create post</title>
+      </Head>
 
-      <Footer />
-    </div>
+      <Header />
+      <Container>
+        <Form onSubmit={handleSubmit}>
+          <label htmlFor="title" className={titleError && 'red'}>
+            title
+          </label>
+          <input
+            id="title"
+            value={title}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+              handleInputChange({ type: 'TITLE', payload: e.target.value })
+            }
+          />
+          <label htmlFor="body" className={bodyError && 'red'}>
+            body
+          </label>
+          <textarea
+            id="body"
+            value={body}
+            onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
+              handleInputChange({ type: 'BODY', payload: e.target.value })
+            }
+          />
+          <Button type="submit">Post</Button>
+        </Form>
+      </Container>
+    </>
   );
-}
+};
 
 export default New;

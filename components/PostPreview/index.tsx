@@ -1,15 +1,13 @@
 import Link from 'next/link';
 import { Post } from '../../redux/reducers/reducer';
+import { H1, BodyConainer } from '../../styles';
 
 const PostPreview = ({ title, body, id }: Post): JSX.Element => (
   <div>
     <Link href="/posts/[id]" as={`/posts/${id}`}>
-      <h1>{title}</h1>
+      <H1>{title}</H1>
     </Link>
-    <p>
-      {body}
-      {id}
-    </p>
+    <BodyConainer>{body}</BodyConainer>
   </div>
 );
 
