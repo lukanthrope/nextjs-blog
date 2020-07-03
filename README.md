@@ -1,1 +1,19 @@
-This is a starter template for [Learn Next.js](https://nextjs.org/learn)."# nextjs-blog" 
+# Setting up
+
+## copy repo
+
+```
+git clone https://github.com/lukanthrope/nextjs-blog
+```
+
+## install dependencies
+
+```
+yarn install
+```
+
+## run project
+
+```
+yarn dev
+```
