@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import Link from 'next/link';
 import { StyledHeader, MenuContainer } from './StyledHeader';
 import { A } from '../../styles';
@@ -15,4 +16,4 @@ const Header = (): JSX.Element => (
   </StyledHeader>
 );
 
-export default Header;
+export default memo(Header);

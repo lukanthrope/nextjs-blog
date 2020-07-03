@@ -1,16 +1,5 @@
 import { GET_POSTS, GET_POST, CREATE_POST, SET_LOADER, PostAction } from '../actions/actions.types';
-
-export type Post = {
-  id: number;
-  title: string;
-  body: string;
-};
-
-export type State = {
-  isLoading: boolean;
-  posts: Post[];
-  post: Post | null;
-};
+import { State } from './reducer.types';
 
 const initalState: State = {
   isLoading: false,

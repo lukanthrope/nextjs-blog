@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import Head from 'next/head';
 import { NextPage } from 'next';
 import { useSelector, useDispatch } from 'react-redux';
-import { State, Post } from '../redux/reducers/reducer';
+import { State, Post } from '../redux/reducers/reducer.types';
 import { getPosts } from '../redux/actions';
 
 import Header from '../components/Header';

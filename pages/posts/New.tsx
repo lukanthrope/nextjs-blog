@@ -14,6 +14,9 @@ type InputChange = {
 };
 
 const New: NextPage = () => {
+  const TITLE = 'TITLE';
+  const BODY = 'BODY';
+
   const [title, setTitle] = useState('');
   const [body, setBody] = useState('');
 
@@ -24,11 +27,11 @@ const New: NextPage = () => {
   const router = useRouter();
 
   const handleInputChange = ({ type, payload }: InputChange): void => {
-    if (type === 'TITLE') {
+    if (type === TITLE) {
       setTitle(payload);
     }
 
-    if (type === 'BODY') {
+    if (type === BODY) {
       setBody(payload);
     }
   };
@@ -69,7 +72,7 @@ const New: NextPage = () => {
             id="title"
             value={title}
             onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-              handleInputChange({ type: 'TITLE', payload: e.target.value })
+              handleInputChange({ type: TITLE, payload: e.target.value })
             }
           />
           <label htmlFor="body" className={bodyError && 'red'}>
@@ -79,7 +82,7 @@ const New: NextPage = () => {
             id="body"
             value={body}
             onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
-              handleInputChange({ type: 'BODY', payload: e.target.value })
+              handleInputChange({ type: BODY, payload: e.target.value })
             }
           />
           <Button type="submit">Post</Button>

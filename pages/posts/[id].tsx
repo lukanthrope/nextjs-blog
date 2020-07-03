@@ -3,7 +3,7 @@ import { NextPage } from 'next';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { useSelector, useDispatch } from 'react-redux';
-import { State } from '../../redux/reducers/reducer';
+import { State } from '../../redux/reducers/reducer.types';
 import { getPost } from '../../redux/actions';
 
 import Header from '../../components/Header';

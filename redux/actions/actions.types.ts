@@ -1,4 +1,4 @@
-import { Post } from '../reducers/reducer';
+import { Post } from '../reducers/reducer.types';
 
 export const GET_POSTS = 'GET_POSTS';
 export const GET_POST = 'GET_POST';

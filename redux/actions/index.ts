@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { ThunkAction } from 'redux-thunk';
 import { Action } from 'redux';
-import { State } from '../reducers/reducer';
+import { State } from '../reducers/reducer.types';
 import { GET_POSTS, GET_POST, CREATE_POST, SET_LOADER } from './actions.types';
 
 export const setLoader = (): ThunkAction<void, State, unknown, Action<string>> => (dispatch) => {
