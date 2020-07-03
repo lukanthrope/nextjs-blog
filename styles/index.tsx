@@ -25,6 +25,7 @@ export const A = styled(HoverText)`
 
 export const Container = styled.header`
   width: 50%;
+  font-size: 1.1rem;
   display: flex;
   flex-direction: column;
   margin: auto;
