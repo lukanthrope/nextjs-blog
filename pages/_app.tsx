@@ -3,8 +3,6 @@ import { wrapper } from '../redux/store';
 
 class WrappedApp extends App<AppInitialProps> {
   public static getInitialProps = async ({ Component, ctx }: AppContext) => {
-    ctx.store.dispatch({ type: 'APP', payload: 'was set in _app' });
-
     return {
       pageProps: {
         ...(Component.getInitialProps ? await Component.getInitialProps(ctx) : {}),
