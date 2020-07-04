@@ -21,6 +21,7 @@ export const getPosts = (): ThunkAction<void, State, unknown, Action<string>> =>
     dispatch(setLoader());
   } catch (err) {
     console.log(err);
+    dispatch(setLoader());
   }
 };
 
@@ -37,6 +38,7 @@ export const getPost = (id: string): ThunkAction<void, State, unknown, Action<st
     dispatch(setLoader());
   } catch (err) {
     console.log(err);
+    dispatch(setLoader());
   }
 };
 
@@ -58,5 +60,6 @@ export const createPost = (title: string, body: string): ThunkAction<void, State
     dispatch(setLoader());
   } catch (err) {
     console.log(err);
+    dispatch(setLoader());
   }
 };
