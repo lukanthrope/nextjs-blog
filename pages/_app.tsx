@@ -3,7 +3,7 @@ import { wrapper } from '../redux/store';
 import { RootDiv } from '../styles';
 
 class WrappedApp extends App<AppInitialProps> {
-  public render() {
+  render() {
     const { Component, pageProps } = this.props;
     return (
       <RootDiv>

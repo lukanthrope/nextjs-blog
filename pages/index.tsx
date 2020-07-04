@@ -22,6 +22,7 @@ const Home: NextPage = () => {
   const RenderPosts = (): JSX.Element[] =>
     posts &&
     posts.map(({ id, title, body }: Post) => <PostPreview id={id} title={title} body={body} key={id} />).reverse();
+
   const noPosts = (): JSX.Element => posts.length === 0 && !isLoading && <h2>No post found</h2>;
 
   return (
