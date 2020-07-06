@@ -33,9 +33,20 @@ export const H1 = styled.h1`
   }
 `;
 
+export const H2 = styled.h2`
+  font-weight: 400;
+  font-size: 1.5rem;
+  margin-top: 50px;
+`;
+
 export const BodyConainer = styled.p`
   margin-top: 50px;
   margin-bottom: 30px;
+`;
+
+export const GrayText = styled.p`
+  font-size: 0.8rem;
+  color: grey;
 `;
 
 export const Form = styled.form`

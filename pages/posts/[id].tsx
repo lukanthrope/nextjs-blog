@@ -8,6 +8,7 @@ import { getPost } from '../../redux/actions';
 
 import Header from '../../components/Header';
 import Spinner from '../../components/Spinner';
+import Comments from '../../components/Comments';
 import { Container, BodyConainer, H1 } from '../../styles';
 
 const PostPage: NextPage = () => {
@@ -27,6 +28,7 @@ const PostPage: NextPage = () => {
       <>
         <H1>{post.title}</H1>
         <BodyConainer>{post.body}</BodyConainer>
+        <Comments comments={post.comments} />
       </>
     );
 

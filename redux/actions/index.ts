@@ -28,7 +28,7 @@ export const getPosts = (): ThunkAction<void, State, unknown, Action<string>> =>
 export const getPost = (id: string): ThunkAction<void, State, unknown, Action<string>> => async (dispatch) => {
   try {
     dispatch(setLoader());
-    const { data } = await axios.get(`https://simple-blog-api.crew.red/posts/${id}`);
+    const { data } = await axios.get(`https://simple-blog-api.crew.red/posts/${id}?_embed=comments`);
 
     dispatch({
       type: GET_POST,
