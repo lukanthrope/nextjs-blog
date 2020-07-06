@@ -1,5 +1,9 @@
 # Setting up
 
+## deployed project
+
+[nextjs-blog](https://nextjs-blog-drab-three.vercel.app/)
+
 ## copy repo
 
 ```
