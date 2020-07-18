@@ -1,8 +1,7 @@
-import { GET_POSTS, GET_POST, CREATE_POST, SET_LOADER, PostAction } from '../actions/actions.types';
+import { GET_POSTS, GET_POST, CREATE_POST, PostAction } from '../actions/actions.types';
 import { State } from './reducer.types';
 
 const initalState: State = {
-  isLoading: false,
   posts: [],
   post: null,
 };
@@ -23,11 +22,6 @@ export function reducer(state = initalState, action: PostAction): State {
       return {
         ...state,
         posts: [...state.posts, action.payload],
-      };
-    case SET_LOADER:
-      return {
-        ...state,
-        isLoading: !state.isLoading,
       };
     default:
       return {

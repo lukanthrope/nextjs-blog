@@ -2,7 +2,7 @@ export type Comment = {
   id: number;
   postId: number;
   body: string;
-}
+};
 
 export type Post = {
   id: number;
@@ -12,7 +12,6 @@ export type Post = {
 };
 
 export type State = {
-  isLoading: boolean;
   posts: Post[];
   post: Post | null;
 };

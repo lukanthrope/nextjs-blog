@@ -1,53 +1,52 @@
-import { useEffect } from 'react';
-import { NextPage } from 'next';
 import Head from 'next/head';
-import { useRouter } from 'next/router';
-import { useSelector, useDispatch } from 'react-redux';
-import { State } from '../../redux/reducers/reducer.types';
+import { wrapper } from '../../redux/store';
 import { getPost } from '../../redux/actions';
+import { Post } from '../../redux/reducers/reducer.types';
+import { GetSSRPropsContextWithStore, SSRProps } from '../ssrProp.types';
 
 import Header from '../../components/Header';
-import Spinner from '../../components/Spinner';
 import Comments from '../../components/Comments';
 import { Container, BodyConainer, H1 } from '../../styles';
 
-const PostPage: NextPage = () => {
-  const router = useRouter();
-  const { id } = router.query;
+interface Props {
+  post: Post;
+}
 
-  const post = useSelector((state: State) => state.post);
-  const isLoading = useSelector((state: State) => state.isLoading);
-  const dispatch = useDispatch();
+const PostPage = ({ post }: Props): JSX.Element => {
+  const PostRender = (): JSX.Element => (
+    <>
+      <H1>{post.title}</H1>
+      <BodyConainer>{post.body}</BodyConainer>
+      <Comments comments={post.comments} />
+    </>
+  );
 
-  useEffect(() => {
-    dispatch(getPost(id as string));
-  }, []);
-
-  const PostRender = (): JSX.Element =>
-    post && (
-      <>
-        <H1>{post.title}</H1>
-        <BodyConainer>{post.body}</BodyConainer>
-        <Comments comments={post.comments} />
-      </>
-    );
-
-  const noPostFound = (): JSX.Element => !post && !isLoading && <H1>No post found</H1>;
+  const noPostFound = (): JSX.Element => !post && <H1>No post found</H1>;
 
   return (
     <>
       <Head>
-        <title>post #{id}</title>
+        <title>{post?.id ? `post #${post.id}` : 'some error'}</title>
       </Head>
 
       <Header />
-      <Container>
-        {isLoading && <Spinner />}
-        {PostRender()}
-        {noPostFound()}
-      </Container>
+      <Container>{post ? PostRender() : noPostFound()}</Container>
     </>
   );
 };
+
+export const getServerSideProps = wrapper.getServerSideProps(
+  async ({ store, params }: GetSSRPropsContextWithStore): Promise<SSRProps<Props>> => {
+    /* eslint-disable */
+    await store.dispatch<any>(getPost(params.id.toString()));
+    /* eslint-enable */
+
+    return {
+      props: {
+        post: store.getState().post,
+      },
+    };
+  },
+);
 
 export default PostPage;
